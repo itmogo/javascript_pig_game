@@ -13,18 +13,30 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 const diceEl = document.querySelector('.dice');
 
-// starting conditions
-score0El.textContent = 0;
-score1El.textContent = 0;
-diceEl.classList.add('hidden');
+let scores, currentScore, activePlayer, playing;
 
-// creating a variable to save score
-const scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
+//initialse function - starting conditions
+const init = function () {
+  // creating a variable to save score
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
 
-// create a state for holding the game
-let playing = true;
+  // create a state for holding the game
+  playing = true;
+
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+  diceEl.classList.add('hidden');
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+};
+
+init();
 
 // switch a player
 const switchPlayer = function () {
@@ -107,3 +119,6 @@ btnHold.addEventListener('click', function () {
     }
   }
 });
+
+// creating the reset game section
+btnNew.addEventListener('click', init);
